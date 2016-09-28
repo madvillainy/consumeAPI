@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
+RUN npm config set registry http://registry.npmjs.org/
 RUN npm install
 
 # Bundle app source
@@ -13,4 +14,4 @@ COPY . /usr/src/app
 
 EXPOSE 8000
 
-CMD [ "npm", "start" ]
+CMD ["./node_modules/.bin/http-server", "-p 8000"]
